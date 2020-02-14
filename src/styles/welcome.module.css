@@ -1,0 +1,29 @@
+.main {
+  text-align: center;
+  height: 320px;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  border: 1px solid rgb(110, 110, 187);
+  margin: 50px 30rem;
+}
+
+.register-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  padding: 10px;
+  margin: 15px 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  border: 0.5px solid rgb(102, 149, 177);
+  width: 330px;
+  cursor: pointer;
+  color: rgb(3, 25, 221);
+}

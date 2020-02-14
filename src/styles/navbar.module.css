@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: rgb(221, 215, 215);
+  padding: 10px 0px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navlinks {
+  list-style-type: none;
+  font-size: 1.4rem;
+}
