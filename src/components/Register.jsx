@@ -8,12 +8,12 @@ const Register = () => {
   const [pass, setPass] = useState("")
   const [confirmpass, setConfirmPass] = useState("")
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = () => {
     if (name === "" || email === "" || pass === "" || confirmpass === "") {
       alert("Please fill in all fields")
     } else {
       // Checking if email already exists
+
       if (localStorage.getItem(email)) {
         alert("Email already exists !")
       } else {
@@ -30,6 +30,7 @@ const Register = () => {
           setEmail("")
           setPass("")
           setConfirmPass("")
+          window.location.href = "/login"
 
           // Return user to sign-in page here
         } else {
@@ -46,7 +47,7 @@ const Register = () => {
         <form
           onSubmit={handleSubmit}
           // method="POST"
-          // action="http://localhost:5000/register/"
+          // action="http://localhost:5000/api/user/register"
         >
           <label className={registerStyles.label} htmlFor="username">
             Name
@@ -92,7 +93,7 @@ const Register = () => {
             value={confirmpass}
             onChange={e => setConfirmPass(e.target.value)}
           />
-          <button className={registerStyles.registerBtn} type="submit">
+          <button type="submit" className={registerStyles.registerBtn}>
             Register
           </button>{" "}
           <span className={registerStyles.alreadyUser}>

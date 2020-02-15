@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import loginStyles from "../styles/login.module.css"
 import { Link } from "gatsby"
 
-const Login = props => {
+const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -13,23 +13,17 @@ const Login = props => {
     const userObj = JSON.parse(user)
 
     try {
-      console.log(userObj)
-
       if (!user) {
-        alert("Invalid Email")
+        alert("Email doesn't exists")
       } else {
         if (userObj.pass !== password) {
-          alert("paswword is incorrect")
+          alert("Paswword is incorrect")
         } else {
           localStorage.setItem("token", userObj.name)
-          alert("logged in successfully")
+          alert("Logged in successfully")
           setEmail("")
           setPassword("")
-          return (
-            <div>
-              <h1>hello</h1>
-            </div>
-          )
+          window.location.href = "/dashboard"
         }
       }
     } catch (e) {
