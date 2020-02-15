@@ -8,7 +8,8 @@ const Register = () => {
   const [pass, setPass] = useState("")
   const [confirmpass, setConfirmPass] = useState("")
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault()
     if (name === "" || email === "" || pass === "" || confirmpass === "") {
       alert("Please fill in all fields")
     } else {
