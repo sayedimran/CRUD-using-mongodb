@@ -17,12 +17,12 @@ function Welcome() {
         />
         <h1>Register Below or Login</h1>
         <section className={welcomeStyles.registerBtn}>
-          <Link to="/register">
+          <Link to="/app/register">
             <button className={welcomeStyles.buttons} type="button">
               Register Now
             </button>
           </Link>
-          <Link to="/login">
+          <Link to="/app/login">
             <button className={welcomeStyles.buttons} type="button">
               Login
             </button>

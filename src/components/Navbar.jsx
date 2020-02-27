@@ -10,7 +10,7 @@ function Navbar() {
           <li className={navbarStyles.navlinks}>
             <Link
               style={{ textDecoration: `none`, color: `darkblue` }}
-              to="/register"
+              to="/app/register"
             >
               Register
             </Link>
@@ -18,7 +18,7 @@ function Navbar() {
           <li className={navbarStyles.navlinks}>
             <Link
               style={{ textDecoration: `none`, color: `darkblue` }}
-              to="/login"
+              to="/app/login"
             >
               Login
             </Link>

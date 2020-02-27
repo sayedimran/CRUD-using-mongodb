@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import loginStyles from "../styles/login.module.css"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -23,7 +23,7 @@ const Login = () => {
           alert("Logged in successfully")
           setEmail("")
           setPassword("")
-          window.location.href = "/dashboard"
+          navigate("/app/dashboard")
         }
       }
     } catch (e) {
@@ -61,7 +61,7 @@ const Login = () => {
             Login
           </button>
           <span className={loginStyles.notUser}>
-            Not a user? <Link to="/register">Register Here</Link>
+            Not a user? <Link to="/app/register">Register Here</Link>
           </span>
         </form>
       </section>

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import registerStyles from "../styles/register.module.css"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 const Register = () => {
   const [name, setName] = useState("")
@@ -31,7 +31,7 @@ const Register = () => {
           setEmail("")
           setPass("")
           setConfirmPass("")
-          window.location.href = "/login"
+          navigate("/app/login")
 
           // Return user to sign-in page here
         } else {
@@ -98,7 +98,7 @@ const Register = () => {
             Register
           </button>{" "}
           <span className={registerStyles.alreadyUser}>
-            Already have account? <Link to="/login">Sign In</Link>
+            Already have account? <Link to="/app/login">Sign In</Link>
           </span>
         </form>
       </section>

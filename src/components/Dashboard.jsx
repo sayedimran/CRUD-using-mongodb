@@ -1,64 +1,59 @@
-import React, { useEffect, useState } from "react"
-const axios = require("axios").default
+import React, { useState, useEffect } from "react"
 
 function Dashboard() {
   const [posts, setPosts] = useState([])
-  const [newPost, setNewPost] = useState("")
-  const [title, setTitle] = useState("")
-
-  function handleClick() {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title: title,
-        body: newPost,
-        userId: 1,
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(res => res.json())
-      .then(json => console.log(json))
-  }
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const user = localStorage.getItem("token")
-
-    if (!user) {
-      window.location.href = "/login"
-    }
-
-    axios("https://jsonplaceholder.typicode.com/posts")
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then(response => response.json())
-      .then(data => setPosts(data))
-      .catch(console.log)
-  }, [posts])
+      .then(json => {
+        console.log(json)
+        setPosts(json)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <section>
-      <h1>Hello From Dashboard</h1>
-      <input
-        type="text"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        placeholder="Title of Post"
-        required
-      />
-      <input
-        type="text"
-        value={newPost}
-        onChange={e => setNewPost(e.target.value)}
-        placeholder="Add new post"
-        required
-      />
-      <button onClick={handleClick}>Add Post</button>
-      {posts.map(post => (
-        <div>
-          <li>{post.title}</li>
-          <p>{post.body}</p>
-        </div>
-      ))}
+      <h1 style={{ textAlign: `center` }}>DASHBOARD</h1>
+      {loading ? (
+        <h1 style={{ textAlign: `center`, fontSize: `2rem` }}>Loading...</h1>
+      ) : null}
+      <ul style={{ display: `flex`, flexWrap: `wrap` }}>
+        {posts.map(post => {
+          return (
+            <ul
+              style={{
+                border: `1px solid`,
+                width: `13rem`,
+                margin: `20px 35px`,
+              }}
+              key={post.id}
+            >
+              <h1> {post.name} </h1>
+              <p> {post.email} </p>
+              <h4> {post.address.city} </h4>
+              <button
+                style={{
+                  padding: `5px 12px`,
+                  fontSize: `1rem`,
+                  backgroundColor: `yellow`,
+                  border: `none`,
+                  borderRadius: `5px`,
+                  marginLeft: `50px`,
+                  marginBottom: `2px`,
+                }}
+              >
+                Details
+              </button>
+            </ul>
+          )
+        })}
+      </ul>
     </section>
   )
 }
