@@ -19,3 +19,23 @@ body {
   list-style-type: none;
   font-size: 1.4rem;
 }
+
+.btn {
+  border: none;
+}
+
+.icon {
+  position: relative;
+  font-size: 2rem;
+}
+
+.logout {
+  list-style: none;
+  position: absolute;
+  display: none;
+}
+
+.list {
+  list-style-type: none;
+  position: absolute;
+}
