@@ -1,6 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
+import { Link, navigate } from "gatsby"
 import navbarStyles from "../styles/navbar.module.css"
+import { FaUserCircle } from "react-icons/fa"
 
 function Navbar() {
   return (
