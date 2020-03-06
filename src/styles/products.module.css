@@ -19,13 +19,18 @@
   cursor: pointer;
 }
 
-.icon {
-  width: 4rem;
-  margin-left: 75rem;
+.icon-container {
+  width: 90%;
+  text-align: right;
+  margin-top: -10rem;
   position: fixed;
 }
 
-.container {
+.icon {
+  width: 3rem;
+}
+
+.form-container {
   padding-top: 2rem;
   max-width: 100vw;
   display: flex;
@@ -41,5 +46,10 @@
   margin-bottom: 15px;
 }
 
-.form {
+@media (max-width: 475px) {
+  .icon-container {
+    max-width: 80vw;
+    text-align: right;
+    position: relative;
+  }
 }
