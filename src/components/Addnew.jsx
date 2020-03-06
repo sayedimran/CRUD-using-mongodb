@@ -1,64 +1,74 @@
 import React, { useState } from "react"
 import formStyles from "../styles/products.module.css"
 import axios from "axios"
+import { navigate } from "gatsby"
 
 function Addnew() {
-  const [title, setTitle] = useState("")
+  const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [image, setImage] = useState("")
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(title, price)
+    console.log(name, price)
+    const formData = new FormData()
+    formData.append("name", name)
+    formData.append("price", price)
+    formData.append("productImage", image)
     axios
-      .post("http://localhost:3000/products")
+      .post("http://localhost:3000/products", formData, {})
       .then(data => {
-        console.log(data)
-        setTitle(title)
-        setPrice(price)
+        console.log("Created Post request...", data)
       })
       .catch(err => {
         console.log(err)
       })
-    setTitle("")
+    setName("")
     setPrice("")
     setImage("")
+    navigate("/app/dashboard")
   }
 
   return (
-    <section className={formStyles.container}>
+    <section className={formStyles.formContainer}>
       <form className={formStyles.form} onSubmit={handleSubmit} method="POST">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">Name</label>
         <input
           type="text"
           name="name"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          value={name}
+          onChange={e => {
+            setName(e.target.value)
+          }}
           className={formStyles.input}
           required
         />
         <label htmlFor="price">Price</label>
         <input
-          type="text"
+          type="number"
           name="price"
           value={price}
-          onChange={e => setPrice(e.target.value)}
-          className={formStyles.input}
-          required
-        />
-        {/* <label htmlFor="title">Product Image</label>
-        <input
-          type="file"
-          name="productImage"
-          value={image}
           onChange={e => {
-            setImage(e.target.value)
-            console.log(e.target.files)
+            setPrice(e.target.value)
           }}
           className={formStyles.input}
           required
-        /> */}
-        <button type="submit">ADD PRODUCT</button>
+        />
+        <label htmlFor="title">Product Image</label>
+        <input
+          type="file"
+          name="productImage"
+          onChange={e => {
+            setImage(e.target.files[0])
+            console.log(e.target.files[0])
+          }}
+          // value={image}
+          className={formStyles.input}
+          required
+        />
+        <button type="button" onClick={handleSubmit}>
+          ADD PRODUCT
+        </button>
       </form>
     </section>
   )

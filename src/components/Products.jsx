@@ -30,15 +30,17 @@ const Products = () => {
           </li>
         ))}
       </ul>
-      <button
-        className={productStyles.btn}
-        onClick={e => {
-          e.preventDefault()
-          navigate("/app/product/new")
-        }}
-      >
-        <img className={productStyles.icon} src={AddProduct} alt="plusicon" />
-      </button>
+      <section className={productStyles.iconContainer}>
+        <button
+          className={productStyles.btn}
+          onClick={e => {
+            e.preventDefault()
+            navigate("/app/product/new")
+          }}
+        >
+          <img className={productStyles.icon} src={AddProduct} alt="plusicon" />
+        </button>
+      </section>
     </section>
   )
 }
