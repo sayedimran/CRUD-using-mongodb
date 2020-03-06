@@ -22,11 +22,26 @@ const Products = () => {
       <ul className={productStyles.container}>
         {products.map(product => (
           <li className={productStyles.products} key={product._id}>
-            <h1>{product.name}</h1>
+            <h1>{product.name} </h1>
             <p> {product.price} </p>
             <Link to={`/app/product/${product._id}`}>
               <button> More Details</button>
-            </Link>
+            </Link>{" "}
+            <button
+              onClick={e => {
+                e.preventDefault()
+                fetch(`http://localhost:3000/products/${product._id}`, {
+                  method: "DELETE",
+                })
+                  .then(data => {
+                    alert("Data Deleted")
+                    navigate("/app/dashboard")
+                  })
+                  .catch(err => console.log(err))
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
