@@ -4,7 +4,7 @@ import Layout from "../components/Layout"
 import Login from "../components/Login"
 import Register from "../components/Register"
 import PrivateRoute from "../components/PrivateRoutes"
-
+import EditProduct from "../components/EditProduct"
 import Dashboard from "../components/Dashboard"
 import Product from "../components/Product"
 import Addnew from "../components/Addnew"
@@ -18,6 +18,7 @@ const app = () => {
         <PrivateRoute path="/app/dashboard" component={Dashboard} />
         <Product path="/app/product/:id" />
         <Addnew path="/app/product/new" />
+        <EditProduct path="/app/edit/:id" />
       </Router>
     </Layout>
   )
