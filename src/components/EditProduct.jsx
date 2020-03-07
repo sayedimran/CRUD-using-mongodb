@@ -1,26 +1,29 @@
 import React, { useState } from "react"
+import axios from "axios"
+import { navigate } from "gatsby"
 
 const EditProduct = ({ id }) => {
   const [name, setName] = useState("")
-  const [value, setValue] = useState("")
+  const [price, setPrice] = useState("")
 
   const handleUpdate = e => {
     e.preventDefault()
-    fetch(`http://localhost:3000/products/${id}`, {
-      method: "PATCH",
-      // body: JSON.stringify({
-      //   _id: id,
-      //   propName: propName,
-      //   value: value,
-      // }),
-    })
-      .then(data => console.log("Updated Successfully", data))
+    axios
+      .put(`http://localhost:3000/products/${id}`, {
+        _id: id,
+        name: name,
+        price: price,
+      })
+      .then(data => {
+        console.log(data)
+        alert("Update Successfully")
+        setName("")
+        setPrice("")
+        navigate("/app/dashboard")
+      })
+
       .catch(err => console.log(err))
   }
-
-  //   const handleChange = (e) => {
-  //     const value
-  //   }
 
   return (
     <section>
@@ -28,7 +31,7 @@ const EditProduct = ({ id }) => {
         <label htmlFor="propName">PropName</label>
         <input
           type="text"
-          name="propName"
+          name="name"
           value={name}
           onChange={e => {
             e.preventDefault()
@@ -38,11 +41,11 @@ const EditProduct = ({ id }) => {
         <label htmlFor="propName">Value</label>
         <input
           type="text"
-          name="value"
-          value={value}
+          name="price"
+          value={price}
           onChange={e => {
             e.preventDefault()
-            setValue(e.target.value)
+            setPrice(e.target.value)
           }}
         />
         <button type="submit">Update Product</button>
