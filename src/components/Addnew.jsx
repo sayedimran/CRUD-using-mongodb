@@ -3,7 +3,7 @@ import formStyles from "../styles/products.module.css"
 import axios from "axios"
 import { navigate } from "gatsby"
 
-function Addnew() {
+function Addnew({ id }) {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [image, setImage] = useState("")
@@ -27,6 +27,15 @@ function Addnew() {
     setPrice("")
     setImage("")
     navigate("/app/dashboard")
+  }
+
+  const handleUpdate = e => {
+    e.preventDefault()
+    fetch(`http://localhost:3000/${id}`, {
+      method: "PATCH",
+    })
+      .then(data => console.log("Updated Clicked"))
+      .catch(err => console.log(err))
   }
 
   return (
@@ -68,6 +77,13 @@ function Addnew() {
         />
         <button type="button" onClick={handleSubmit}>
           ADD PRODUCT
+        </button>
+        <button
+          style={{ marginLeft: `20px` }}
+          onClick={handleUpdate}
+          type="button"
+        >
+          Update Product
         </button>
       </form>
     </section>

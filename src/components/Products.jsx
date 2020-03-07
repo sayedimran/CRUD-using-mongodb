@@ -5,6 +5,7 @@ import AddProduct from "../images/plus.png"
 
 const Products = () => {
   const [products, setProducts] = useState([])
+  const [deleteProduct, setDeleteProduct] = useState(false)
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -14,7 +15,7 @@ const Products = () => {
         setProducts(data.Products)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [deleteProduct])
 
   return (
     <section>
@@ -35,6 +36,7 @@ const Products = () => {
                 })
                   .then(data => {
                     alert("Data Deleted")
+                    setDeleteProduct(true)
                     navigate("/app/dashboard")
                   })
                   .catch(err => console.log(err))
@@ -42,6 +44,9 @@ const Products = () => {
             >
               Delete
             </button>
+            <Link to={`/app/edit/${product._id}`}>
+              <button>Edit</button>
+            </Link>
           </li>
         ))}
       </ul>
