@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { navigate } from "gatsby"
+import editStyles from "../styles/products.module.css"
 
 const EditProduct = ({ id }) => {
   const [name, setName] = useState("")
@@ -25,11 +26,12 @@ const EditProduct = ({ id }) => {
   }
 
   return (
-    <section>
-      <form onSubmit={handleUpdate} method="PATCH">
+    <section className={editStyles.formContainer}>
+      <form onSubmit={handleUpdate} method="PUT" className={editStyles.form}>
         <label htmlFor="propName">PropName</label>
         <input
           type="text"
+          className={editStyles.input}
           name="name"
           value={name}
           onChange={e => {
@@ -40,6 +42,7 @@ const EditProduct = ({ id }) => {
         <label htmlFor="propName">Value</label>
         <input
           type="text"
+          className={editStyles.input}
           name="price"
           value={price}
           onChange={e => {
