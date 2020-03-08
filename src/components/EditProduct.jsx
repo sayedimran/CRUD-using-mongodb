@@ -10,7 +10,6 @@ const EditProduct = ({ id }) => {
     e.preventDefault()
     axios
       .put(`http://localhost:3000/products/${id}`, {
-        _id: id,
         name: name,
         price: price,
       })
