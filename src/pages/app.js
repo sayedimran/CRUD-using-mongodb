@@ -17,8 +17,8 @@ const app = () => {
         <Login path="/app/login" />
         <PrivateRoute path="/app/dashboard" component={Dashboard} />
         <Product path="/app/product/:id" />
-        <Addnew path="/app/product/new" />
-        <EditProduct path="/app/edit/:id" />
+        <PrivateRoute path="/app/product/new" component={Addnew} />
+        <PrivateRoute path="/app/edit/:id" component={EditProduct} />
       </Router>
     </Layout>
   )
