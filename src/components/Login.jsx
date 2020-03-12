@@ -24,11 +24,16 @@ const Login = () => {
       })
       const { token } = await response.json()
       console.log(token)
+      if (token) {
+        localStorage.setItem("token", token)
+        alert("Logged In")
+        navigate("/app/dashboard")
+      } else {
+        alert("User Doens't Exists")
+      }
       // localStorage.setItem("token", token)
-      setEmail("")
-      setPassword("")
-      alert("Logged In")
-      navigate("/app/dashboard")
+      // setEmail("")
+      // setPassword("")
     } catch (err) {
       console.log(err)
     }
@@ -66,6 +71,7 @@ const Login = () => {
             onChange={e => setEmail(e.target.value)}
             type="email"
             name="email"
+            required
           />
 
           <label htmlFor="password">Password</label>
@@ -75,6 +81,7 @@ const Login = () => {
             onChange={e => setPassword(e.target.value)}
             type="password"
             name="password"
+            required
           />
           <button
             type="submit"
