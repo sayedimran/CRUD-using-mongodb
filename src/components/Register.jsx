@@ -8,48 +8,74 @@ const Register = () => {
   const [pass, setPass] = useState("")
   const [confirmpass, setConfirmPass] = useState("")
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    if (name === "" || email === "" || pass === "" || confirmpass === "") {
-      alert("Please fill in all fields")
-    } else {
-      // Checking if email already exists
+    let user = JSON.stringify({
+      name,
+      email,
+      pass,
+    })
 
-      if (localStorage.getItem(email)) {
-        alert("Email already exists !")
-      } else {
-        const userObj = {
-          name,
-          pass,
-          email,
-        }
-        const obj = JSON.stringify(userObj)
-        if (pass === confirmpass) {
-          localStorage.setItem(email, obj)
-          alert("Registered Successfully")
-          setName("")
-          setEmail("")
-          setPass("")
-          setConfirmPass("")
-          navigate("/app/login")
-
-          // Return user to sign-in page here
-        } else {
-          alert("Password does not match!")
-        }
-      }
+    try {
+      const response = await fetch("http://localhost:3000/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: user,
+      })
+      const data = await response.json()
+      console.log(data)
+      setName("")
+      setEmail("")
+      setPass("")
+      setConfirmPass("")
+      alert("Registered Successfully")
+      navigate("/app/login")
+    } catch (err) {
+      console.log(err)
     }
+    // setName("")
+    // setEmail("")
+    // setPass("")
+    // setConfirmPass("")
+    // navigate("/app/login")
+    // if (name === "" || email === "" || pass === "" || confirmpass === "") {
+    //   alert("Please fill in all fields")
+    // } else {
+    //   // Checking if email already exists
+
+    //   if (localStorage.getItem(email)) {
+    //     alert("Email already exists !")
+    //   } else {
+    //     const userObj = {
+    //       name,
+    //       pass,
+    //       email,
+    //     }
+    //     const obj = JSON.stringify(userObj)
+    //     if (pass === confirmpass) {
+    //       localStorage.setItem(email, obj)
+    //       alert("Registered Successfully")
+    //       setName("")
+    //       setEmail("")
+    //       setPass("")
+    //       setConfirmPass("")
+    //       navigate("/app/login")
+
+    //       // Return user to sign-in page here
+    //     } else {
+    //       alert("Password does not match!")
+    //     }
+    //   }
+    // }
   }
 
   return (
     <section className={registerStyles.container}>
       <h1>Register new Account</h1>
       <section className={registerStyles.registerForm}>
-        <form
-          onSubmit={handleSubmit}
-          // method="POST"
-          // action="http://localhost:5000/api/user/register"
-        >
+        <form onSubmit={handleSubmit}>
           <label className={registerStyles.label} htmlFor="username">
             Name
           </label>
