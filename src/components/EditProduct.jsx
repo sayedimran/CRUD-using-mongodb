@@ -10,9 +10,9 @@ const EditProduct = ({ id }) => {
   const handleUpdate = e => {
     e.preventDefault()
     axios
-      .put(`http://localhost:3000/products/${id}`, {
-        name: name,
-        price: price,
+      .patch(`http://localhost:3000/products/${id}`, {
+        name,
+        price,
       })
       .then(data => {
         console.log(data)
@@ -28,7 +28,7 @@ const EditProduct = ({ id }) => {
   return (
     <section className={editStyles.formContainer}>
       <form onSubmit={handleUpdate} method="PUT" className={editStyles.form}>
-        <label htmlFor="propName">PropName</label>
+        <label htmlFor="propName">Name</label>
         <input
           type="text"
           className={editStyles.input}
