@@ -7,6 +7,7 @@ function Addnew({ id }) {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [image, setImage] = useState("")
+  const [showimage, setShowimage] = useState(showimage)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -69,6 +70,7 @@ function Addnew({ id }) {
           name="productImage"
           onChange={e => {
             setImage(e.target.files[0])
+            setShowimage(URL.createObjectURL(e.target.files[0]))
             console.log(e.target.files[0])
           }}
           // value={image}
@@ -86,6 +88,7 @@ function Addnew({ id }) {
           Update Product
         </button>
       </form>
+      <img className={formStyles.image} src={showimage} />
     </section>
   )
 }

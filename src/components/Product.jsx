@@ -19,7 +19,11 @@ const Product = ({ id }) => {
       <section style={{ margin: `2rem 0rem` }}>
         <h1>{product.name}</h1>
         <p> {product.price} </p>
-        <img src={product.productImage} alt="text" />
+        <img
+          style={{ width: `400px`, height: `300px`, marginTop: `10px` }}
+          src={product.productImage}
+          alt="text"
+        />
       </section>
     </section>
   )
