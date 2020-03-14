@@ -46,6 +46,11 @@
   margin-bottom: 15px;
 }
 
+.image {
+  width: 400px;
+  height: 250px;
+}
+
 @media (max-width: 475px) {
   .icon-container {
     max-width: 80vw;
